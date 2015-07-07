@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+    head
+        title Module: #{title}
+        link(rel="stylesheet", href="/vendor/codemirror/lib/codemirror.css")
+    body
+        input#save(type="button", value="Save")
+        form
+            textarea#editor #{code}
+
+        script(src="/vendor/jquery/dist/jquery.min.js")
+        script(src="/vendor/codemirror/lib/codemirror.js")
+        script(src="/vendor/codemirror/mode/javascript/javascript.js")
+        script(src="/vendor/codemirror/mode/xml/xml.js")
+        script(src="/vendor/codemirror/mode/htmlmixed/htmlmixed.js")
+        script(src="/vendor/codemirror/mode/jade/jade.js")
+        script.
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+                mode : {name : "jade", alignCDATA : true},
+                lineNumbers : true
+            });
+
+            CodeMirror.save = function() {
+                var codeOut = editor.getValue().toString(),
+                    data = {
+                        _id : '#{title}',
+                        code : codeOut
+                    };
+                $
+                    .post('/admin/module/#{title}/save', data);
+
+            };
+            document.getElementById("save").addEventListener("click", CodeMirror.save);

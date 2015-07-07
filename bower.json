@@ -1,0 +1,7 @@
+{
+  "name": "site-builder",
+  "dependencies": {
+    "codemirror": "~5.4.0",
+    "jquery": "~2.1.4"
+  }
+}
