@@ -2,6 +2,9 @@
   "name": "site-builder",
   "dependencies": {
     "codemirror": "~5.4.0",
-    "jquery": "~2.1.4"
+    "masseuse": "~2.3.2",
+    "lodash": "~3.10.0",
+    "require-jade": "~0.0.3",
+    "bootstrap": "~3.3.5"
   }
 }

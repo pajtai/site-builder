@@ -1,6 +1,7 @@
 'use strict';
 
-var db = require('../../db');
+var db = require('../../db'),
+    jade = require('jade');
 
 module.exports = function(req, res, next) {
     var name = req.params.name;
@@ -11,10 +12,11 @@ module.exports = function(req, res, next) {
     })
         .then(function(doc) {
             doc = doc || {code:''};
-            console.log('doc is', doc);
             res.cache(require.resolve('./view.jade'), {
                 title : name,
-                code : doc.code
+                code : doc.code,
+                data : doc.data,
+                output : jade.compile(doc.code)(JSON.parse(doc.data))
             });
         })
 };

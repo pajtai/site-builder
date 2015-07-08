@@ -2,32 +2,40 @@ doctype html
 html(lang="en")
     head
         title Module: #{title}
+        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet", href="/vendor/codemirror/lib/codemirror.css")
-    body
-        input#save(type="button", value="Save")
-        form
-            textarea#editor #{code}
+        link(rel="stylesheet", href="/styles.css")
+    body#page
+        .container-fluid
+            .row
+                .cols.col-md-12
+                    h3 Preview
+                #preview.cols.col-md-12
+                    .row
+                        #output.cols.col-md-10.col-md-offset-1(data-rv-html="model:output")!= output
+            .row
+                form
+                    .form-group
+                        .cols.col-md-12
+                            button#save.hide.btn.btn-primary(type="button", data-rv-on-click="view.onSave") Save
+                    .form-group
+                        .cols.col-md-6
+                            h3 Data:
+                                textarea#editorData.small #{data}
+                        .cols.col-md-6
+                            h3 Code:
+                                textarea#editor.small #{code}
 
+        script(type="text/javascript").
+            var preloaded = {
+                title : "#{title}"
+            };
+        script(type="text/javascript", data-main="/main")
+        script(scr="/vendor/jade/jade.js")
         script(src="/vendor/jquery/dist/jquery.min.js")
         script(src="/vendor/codemirror/lib/codemirror.js")
         script(src="/vendor/codemirror/mode/javascript/javascript.js")
         script(src="/vendor/codemirror/mode/xml/xml.js")
         script(src="/vendor/codemirror/mode/htmlmixed/htmlmixed.js")
         script(src="/vendor/codemirror/mode/jade/jade.js")
-        script.
-            var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-                mode : {name : "jade", alignCDATA : true},
-                lineNumbers : true
-            });
-
-            CodeMirror.save = function() {
-                var codeOut = editor.getValue().toString(),
-                    data = {
-                        _id : '#{title}',
-                        code : codeOut
-                    };
-                $
-                    .post('/admin/module/#{title}/save', data);
-
-            };
-            document.getElementById("save").addEventListener("click", CodeMirror.save);
+        script(type="text/javascript", src="/vendor/requirejs/require.js")

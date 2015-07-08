@@ -13,7 +13,8 @@
     "deep-empty": "^0.1.4",
     "expressively": "0.3.0",
     "findup-sync": "^0.2.1",
-    "lodash": "^3.9.3",
+    "jade": "^1.11.0",
+    "lodash": "^3.10.0",
     "memoize-clear": "0.0.0",
     "mongodb": "^2.0.35",
     "node-sass-middleware": "^0.8.0"
