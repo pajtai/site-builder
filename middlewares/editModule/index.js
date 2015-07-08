@@ -11,7 +11,7 @@ module.exports = function(req, res, next) {
         _id : name
     })
         .then(function(doc) {
-            doc = doc || {code:''};
+            doc = doc || { code:'', data : '{}'};
             res.cache(require.resolve('./view.jade'), {
                 title : name,
                 code : doc.code,

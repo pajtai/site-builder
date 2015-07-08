@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+    head
+        title Module: #{title}
+        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/vendor/codemirror/lib/codemirror.css")
+        link(rel="stylesheet", href="/styles.css")
+    body#page
+        .container-fluid
+            .row
+                .cols.col-md-12
+                    h3 Page
+        script(src="/vendor/jquery/dist/jquery.min.js")
+        script(src="/vendor/codemirror/lib/codemirror.js")
+        script(src="/vendor/codemirror/mode/javascript/javascript.js")
+        script(src="/vendor/codemirror/mode/xml/xml.js")
+        script(src="/vendor/codemirror/mode/htmlmixed/htmlmixed.js")
+        script(src="/vendor/codemirror/mode/jade/jade.js")
+        script(type="text/javascript", src="/vendor/requirejs/require.js")
