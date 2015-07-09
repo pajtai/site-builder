@@ -9,7 +9,7 @@ module.exports = function(req, res) {
         .saveAsync(req.body)
         .then(function() {
             res.json({
-                output : jade.compile(req.body.code)(JSON.parse(req.body.data))
+                output : jade.compile(req.body.template)(JSON.parse(req.body.data))
             });
         });
 };

@@ -11,8 +11,17 @@ module.exports = function(req, res, next) {
         _id : name
     })
         .then(function(doc) {
-            doc = doc || {};
+
+            doc = doc || {
+                    tite : name,
+                    data : {},
+                    rows : []
+                };
+
             res.cache(require.resolve('./view.jade'), {
+                title : name,
+                code : doc.code,
+                data : doc.data
             });
         })
 };

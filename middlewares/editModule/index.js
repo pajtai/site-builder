@@ -11,12 +11,12 @@ module.exports = function(req, res, next) {
         _id : name
     })
         .then(function(doc) {
-            doc = doc || { code:'', data : '{}'};
+            doc = doc || { template:'', data : '{}'};
             res.cache(require.resolve('./view.jade'), {
                 title : name,
-                code : doc.code,
+                template : doc.template,
                 data : doc.data,
-                output : jade.compile(doc.code)(JSON.parse(doc.data))
+                output : jade.compile(doc.template)(JSON.parse(doc.data))
             });
         })
 };

@@ -11,11 +11,11 @@ define(['masseuse', './options', 'editor', 'editorData'],
 
         function onSave() {
             var self = this,
-                templateOut = editor.getValue().toString(),
+                codeOut = editor.getValue().toString(),
                 dataOut = editorData.getValue().toString(),
                 data = {
                     _id : window.preloaded.title,
-                    template : templateOut,
+                    code : codeOut,
                     data : dataOut
                 };
             this.$save.fadeOut();
@@ -24,6 +24,7 @@ define(['masseuse', './options', 'editor', 'editorData'],
             $
                 .post('/admin/module/' + window.preloaded.title + '/save', data)
                 .done(function(doc) {
+                    console.log(doc);
                     self.model.set('output', doc.output);
                     self.$save.fadeIn();
                 })
@@ -33,6 +34,7 @@ define(['masseuse', './options', 'editor', 'editorData'],
         }
 
         function beforeRender() {
+            console.log('done');
             this.outputHtml = this.$('#output').html();
         }
 

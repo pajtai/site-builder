@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
     head
-        title Module: #{title}
+        title Page: #{title}
         link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet", href="/vendor/codemirror/lib/codemirror.css")
         link(rel="stylesheet", href="/styles.css")
@@ -10,10 +10,26 @@ html(lang="en")
             .row
                 .cols.col-md-12
                     h3 Page
+            .row
+                form
+                    .form-group
+                        .cols.col-md-12
+                            button#save.hide.btn.btn-primary(type="button", data-rv-on-click="view.onSave") Save
+                    .form-group
+                        .cols.col-md-6
+                            h3 Data:
+                                textarea#editorData.small #{data}
+                        .cols.col-md-6
+                            h3 Code:
+                                textarea#editor.small #{template}
+            script(type="text/javascript").
+                var preloaded = {
+                    title : "#{title}"
+                };
         script(src="/vendor/jquery/dist/jquery.min.js")
         script(src="/vendor/codemirror/lib/codemirror.js")
         script(src="/vendor/codemirror/mode/javascript/javascript.js")
         script(src="/vendor/codemirror/mode/xml/xml.js")
         script(src="/vendor/codemirror/mode/htmlmixed/htmlmixed.js")
         script(src="/vendor/codemirror/mode/jade/jade.js")
-        script(type="text/javascript", src="/vendor/requirejs/require.js")
+        script(type="text/javascript", src="/vendor/requirejs/require.js", data-main="/page")
