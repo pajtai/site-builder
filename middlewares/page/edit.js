@@ -18,12 +18,13 @@ module.exports = function(req, res, next) {
             }),
         function(doc, modules) {
 
+
             doc = doc || {
-                    title : name,
-                    rows : [],
-                    module : modules
+                    _id : name,
+                    rows : []
                 };
 
+            console.log('doc is', JSON.stringify(doc,null,1));
             res.cache(require.resolve('./edit.jade'), {
                 title : name,
                 rows : doc.rows,

@@ -7,16 +7,13 @@ html(lang="en")
         link(rel="stylesheet", href="/styles.css")
     body#page
         .container-fluid
-            .row
-                .cols.col-md-12
-                    h3 Page
             .row(data-rv-each-row="model.rows")
                 .cols.col-md-12(data-rv-each-modulemodel="row:", data-rv-html="modulemodel:output")
             .row.well
                 form
                     .form-group
                         .cols.col-md-12
-                            button#save.hide.btn.btn-primary(type="button", data-rv-on-click="view.onSave") Save
+                            button#save.hide.btn.btn-primary(type="button", data-rv-on-click="view.onSave", data-rv-hide="model:saving") Save
                     .form-group
                         .cols.col-md-12
                             h3 Page:
@@ -50,6 +47,10 @@ html(lang="en")
             script(type="text/javascript").
                 var preloaded = {
                     title : "#{title}",
+                    doc : {
+                        _id : "#{title}",
+                        rows : !{JSON.stringify(rows, null, 1)}
+                    },
                     modules : !{JSON.stringify(modules,null,1)}
                 };
         script(src="/vendor/codemirror/lib/codemirror.js")

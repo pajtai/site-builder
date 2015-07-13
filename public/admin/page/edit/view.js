@@ -1,5 +1,5 @@
-define(['masseuse', './options', 'jquery'],
-    function(masseuse, options, $) {
+define(['masseuse', './options', 'jquery', 'underscore', './collectionRow'],
+    function(masseuse, options, $, _, CollectionRow) {
         'use strict';
 
         return masseuse.plugins.rivets.RivetsView.extend({
@@ -22,10 +22,34 @@ define(['masseuse', './options', 'jquery'],
             this.pickAModule(context);
         }
         function onSave() {
+            var self = this,
+                json = _.map(this.model.rows, function(row) {
+                return row.toJSON()
+            });
 
+            console.log('page data to save', json);
+            this.model.set('saving', true);
+
+            $.ajax({
+                    url: preloaded.title + '/save',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        _id : preloaded.title,
+                        rows : json
+                    })
+                })
+                .done(function() {
+                    self.model.set('saving', false);
+                });
         }
 
         function beforeRender() {
+            var rows = window.preloaded.doc.rows;
+            rows = rows.map(function(row) {
+                return new CollectionRow(row);
+            });
+            this.model.rows = rows;
         }
 
 

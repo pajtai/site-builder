@@ -11,7 +11,7 @@
   "dependencies": {
     "bluebird": "^2.9.26",
     "deep-empty": "^0.1.4",
-    "expressively": "0.3.0",
+    "expressively": "0.3.1",
     "findup-sync": "^0.2.1",
     "jade": "^1.11.0",
     "lodash": "^3.10.0",

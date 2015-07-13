@@ -1,8 +1,9 @@
 [
-  ["POST",       "/admin/module/:name/save",        ["module/save"]],
   ["POST",       "/admin/module/calculate",         ["module/calculate"]],
   ["GET",        "/admin",                          ["admin"]],
   ["GET",        "/admin/module/:name",             ["module/render"]],
+  ["POST",       "/admin/module/:name/save",        ["module/save"]],
   ["GET",        "/admin/module/:name/json",        ["module/get"]],
-  ["GET",        "*/edit$",                         ["page/edit"]]
+  ["GET",        "*/edit$",                         ["page/edit"]],
+  ["POST",       "*/save$",                         ["page/save"]]
 ]

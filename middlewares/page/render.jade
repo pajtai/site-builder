@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+    head
+        title Page: #{title}
+        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/vendor/codemirror/lib/codemirror.css")
+        link(rel="stylesheet", href="/styles.css")
+    body#page
+        .container-fluid
+            for row in rows
+                .row
+                    for module in rows
+                    .cols.col-md-12(data-rv-each-modulemodel="row:", data-rv-html="modulemodel:output")

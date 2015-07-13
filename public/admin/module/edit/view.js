@@ -20,6 +20,7 @@ define(['masseuse', './options', 'editor', 'editorData'],
                 };
             this.$save.fadeOut();
 
+            // TODO: needs to be json send
             // TODO: convert to model.save
             $
                 .post('/admin/module/' + window.preloaded.title + '/save', data)
