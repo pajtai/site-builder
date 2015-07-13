@@ -26,7 +26,8 @@ module.exports = function(req, res, next) {
 
             res.cache(require.resolve('./view.jade'), {
                 title : name,
-                rows : doc.rows
+                rows : doc.rows,
+                modules : modules
             });
         }
     )

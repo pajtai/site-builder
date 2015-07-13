@@ -1,5 +1,5 @@
-define(['masseuse', './options'],
-    function(masseuse, options, editor, editorData) {
+define(['masseuse', './options', 'jquery'],
+    function(masseuse, options, $) {
         'use strict';
 
         return masseuse.plugins.rivets.RivetsView.extend({
@@ -7,29 +7,31 @@ define(['masseuse', './options'],
             onSave          : onSave,
             onAddRow        : onAddRow,
             onAddModule     : onAddModule,
+            pickAModule     : pickAModule,
             beforeRender    : beforeRender,
-            afterRender     : afterRender,
-            pickAModule     : pickAModule
+            afterRender     : afterRender
         });
 
         function onAddRow(event) {
             event.preventDefault();
-            console.log(this.model.get('rows'));
-            this.model.get('rows').push([]);
+            this.model.addRow();
         }
 
         function onAddModule(event, context) {
+            var self = this;
             event.preventDefault();
-            this.pickAModule()
+            this.pickAModule(context)
                 .then(function(module) {
-                    context.row.push(module);
-                });
+
+                    self.model.addModule(context.index, {});
+                })
         }
         function onSave() {
 
         }
 
         function beforeRender() {
+            this.model.on('moduleAdded', pickAModule);
         }
 
 
@@ -39,8 +41,11 @@ define(['masseuse', './options'],
             this.model.set('output', this.outputHtml);
         }
 
-        function pickAModule() {
-
+        function pickAModule(context) {
+            var deferred = $.Deferred();
+            this.model.picking(context.index);
+            console.log('pick a module',this.model.get('modules'));
+            return deferred.promise();
         }
     });
 
