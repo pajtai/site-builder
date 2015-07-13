@@ -16,17 +16,26 @@ html(lang="en")
                         .cols.col-md-12
                             button#save.hide.btn.btn-primary(type="button", data-rv-on-click="view.onSave") Save
                     .form-group
-                        .cols.col-md-6
-                            h3 Data:
-                                textarea#editorData.small #{data}
-                        .cols.col-md-6
-                            h3 Code:
-                                textarea#editor.small #{template}
+                        .cols.col-md-12
+                            h3 Page:
+                        .cols.col-md-12
+                            .row
+                                .cols.col-md-1
+                                    button.btn.btn-primary(data-rv-on-click="view.onAddRow") + Row
+                            .row(data-rv-each-row="model.attributes.rows")
+                                .cols.col-md-11.btn-group(role="group", aria-label="row")
+                                    button.btn.btn-primary(data-rv-on-click="view.onAddModule") + Module
+                                    button.btn.btn-default(type="button", data-rv-each-module="row") Module
+                            .row
+                                .well
+                                    select.form-control.dropdown
+                                        option(value="one") one
+                                        option(value="two") two
+
             script(type="text/javascript").
                 var preloaded = {
                     title : "#{title}"
                 };
-        script(src="/vendor/jquery/dist/jquery.min.js")
         script(src="/vendor/codemirror/lib/codemirror.js")
         script(src="/vendor/codemirror/mode/javascript/javascript.js")
         script(src="/vendor/codemirror/mode/xml/xml.js")

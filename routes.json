@@ -1,5 +1,6 @@
 [
   ["POST",       "/admin/module/:name/save",        ["saveModule"]],
+  ["GET",        "/admin",                          ["admin"]],
   ["GET",        "/admin/module/:name",             ["editModule"]],
   ["GET",        "*/edit$",                         ["editPage"]]
 ]

@@ -13,10 +13,6 @@
             },
             "packages" : [
                 {
-                    "name" : "underscore",
-                    "location" : "/vendor/lodash-amd/underscore"
-                },
-                {
                     "name" : "masseuse",
                     "location" : "/vendor/masseuse/app"
                 }
@@ -24,6 +20,7 @@
             "paths" : {
                 "backbone"                  : "./vendor/backbone-amd/backbone",
                 "jquery"                    : "./vendor/jquery/dist/jquery",
+                "underscore"                : "./vendor/lodash/lodash.min",
                 "rivets"                    : "./vendor/rivets/dist/rivets",
                 "jade"                      : "./vendor/require-jade/jade",
                 "editor"                    : "./admin/editor",

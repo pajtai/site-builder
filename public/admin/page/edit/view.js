@@ -1,41 +1,35 @@
-define(['masseuse', './options', 'editor', 'editorData'],
+define(['masseuse', './options'],
     function(masseuse, options, editor, editorData) {
         'use strict';
 
         return masseuse.plugins.rivets.RivetsView.extend({
-            defaultOptions : options,
-            onSave         : onSave,
-            beforeRender   : beforeRender,
-            afterRender    : afterRender
+            defaultOptions  : options,
+            onSave          : onSave,
+            onAddRow        : onAddRow,
+            onAddModule     : onAddModule,
+            beforeRender    : beforeRender,
+            afterRender     : afterRender,
+            pickAModule     : pickAModule
         });
 
-        function onSave() {
-            var self = this,
-                codeOut = editor.getValue().toString(),
-                dataOut = editorData.getValue().toString(),
-                data = {
-                    _id : window.preloaded.title,
-                    code : codeOut,
-                    data : dataOut
-                };
-            this.$save.fadeOut();
+        function onAddRow(event) {
+            event.preventDefault();
+            console.log(this.model.get('rows'));
+            this.model.get('rows').push([]);
+        }
 
-            // TODO: convert to model.save
-            $
-                .post('/admin/module/' + window.preloaded.title + '/save', data)
-                .done(function(doc) {
-                    console.log(doc);
-                    self.model.set('output', doc.output);
-                    self.$save.fadeIn();
-                })
-                .fail(function() {
-                    self.$save.fadeIn();
+        function onAddModule(event, context) {
+            event.preventDefault();
+            this.pickAModule()
+                .then(function(module) {
+                    context.row.push(module);
                 });
+        }
+        function onSave() {
+
         }
 
         function beforeRender() {
-            console.log('done');
-            this.outputHtml = this.$('#output').html();
         }
 
 
@@ -43,6 +37,10 @@ define(['masseuse', './options', 'editor', 'editorData'],
             this.$save = this.$('#save');
             this.$save.removeClass('hide');
             this.model.set('output', this.outputHtml);
+        }
+
+        function pickAModule() {
+
         }
     });
 

@@ -2,26 +2,35 @@
 
 var db = require('../../db'),
     jade = require('jade'),
-    path = require('path');
+    path = require('path'),
+    BB = require('bluebird');
 
 module.exports = function(req, res, next) {
     var name = path.dirname(req.originalUrl);
 
-    db.db.collection('pages').findOneAsync({
-        _id : name
-    })
-        .then(function(doc) {
+    BB.join(
+        db.db.collection('pages').findOneAsync({
+            _id : name
+        }),
+        db.db.collection('modules').findAsync({ })
+            .then(function(cursor) {
+                return cursor.toArrayAsync();
+            }),
+        function(doc, modules) {
 
             doc = doc || {
-                    tite : name,
-                    data : {},
-                    rows : []
+                    title : name,
+                    rows : [],
+                    module : modules
                 };
 
             res.cache(require.resolve('./view.jade'), {
                 title : name,
-                code : doc.code,
-                data : doc.data
+                rows : doc.rows
             });
-        })
+        }
+    )
+
+
+
 };
