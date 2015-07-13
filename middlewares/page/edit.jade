@@ -10,7 +10,9 @@ html(lang="en")
             .row
                 .cols.col-md-12
                     h3 Page
-            .row
+            .row(data-rv-each-row="model.rows")
+                .cols.col-md-12(data-rv-each-modulemodel="row:", data-rv-html="modulemodel:output")
+            .row.well
                 form
                     .form-group
                         .cols.col-md-12
@@ -25,11 +27,11 @@ html(lang="en")
                             .row(data-rv-each-row="model.rows")
                                 .cols.col-md-11.btn-group(role="group", aria-label="row")
                                     button.btn.btn-default >
-                                    button.btn.btn-primary(data-rv-on-click="view.onAddModule", data-rv-unless="row.picking") + Module
-                                    button.btn.btn-default(type="button", data-rv-each-module="row:") Module
-                                .cols.col-md-12.well(data-rv-if="row.picking")
-                                    select.form-control.dropdown
-                                        option(data-rv-each-module="model:modules", data-rv-value="module._id", data-rv-text="module._id")
+                                    button.btn.btn-primary(data-rv-on-click="view.onAddModule", data-rv-hide="row.picking") + Module
+                                    button.btn.btn-default(type="button", data-rv-each-modulemodel="row:") {{ modulemodel:_id }}
+                                .cols.col-md-12.well(data-rv-show="row.picking")
+                                    select.form-control.dropdown(data-rv-value="model:selectedModule")
+                                        option(data-rv-each-module="row.modules", data-rv-value="module._id", data-rv-text="module._id")
 
 
             script(type="text/javascript").

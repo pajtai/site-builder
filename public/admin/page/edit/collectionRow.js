@@ -6,5 +6,6 @@ define(['masseuse', './module'], function(massuese, Module) {
 
     function initialize() {
         this.picking = false;
+        this.modules = window.preloaded.modules;
     }
 });

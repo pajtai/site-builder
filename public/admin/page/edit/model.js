@@ -5,12 +5,11 @@ define(['masseuse', './collectionRow'], function(masseuse, CollectionRow) {
         addModule : addModule,
         moduleAdded : moduleAdded,
         picking : picking,
-        defaults : getDefaults
+        selected : selected
     });
 
     function initialize() {
         this.rows = [];
-        console.log('p', window.preloaded.modules);
     }
 
     function addRow() {
@@ -32,9 +31,10 @@ define(['masseuse', './collectionRow'], function(masseuse, CollectionRow) {
         this.rows[index].picking = true;
     }
 
-    function getDefaults() {
-        return {
-            modules : window.preloaded.modules
-        };
+    function selected(module, index) {
+        this.set('selectedModule', false);
+        this.rows[index].picking = false;
+        this.rows[index].add(module);
+
     }
 });

@@ -18,20 +18,14 @@ define(['masseuse', './options', 'jquery'],
         }
 
         function onAddModule(event, context) {
-            var self = this;
             event.preventDefault();
-            this.pickAModule(context)
-                .then(function(module) {
-
-                    self.model.addModule(context.index, {});
-                })
+            this.pickAModule(context);
         }
         function onSave() {
 
         }
 
         function beforeRender() {
-            this.model.on('moduleAdded', pickAModule);
         }
 
 
@@ -42,10 +36,16 @@ define(['masseuse', './options', 'jquery'],
         }
 
         function pickAModule(context) {
-            var deferred = $.Deferred();
+            var self = this;
             this.model.picking(context.index);
-            console.log('pick a module',this.model.get('modules'));
-            return deferred.promise();
+            this.model.once('change:selectedModule', function(model, selectedModule) {
+
+                $
+                    .get('/admin/module/' + selectedModule + '/json')
+                    .done(function(data) {
+                        self.model.selected(data, context.index);
+                    });
+            });
         }
     });
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('../db'),
+var db = require('../../db'),
     jade = require('jade'),
     _ = require('lodash');
 

@@ -24,7 +24,7 @@ module.exports = function(req, res, next) {
                     module : modules
                 };
 
-            res.cache(require.resolve('./view.jade'), {
+            res.cache(require.resolve('./edit.jade'), {
                 title : name,
                 rows : doc.rows,
                 modules : modules
