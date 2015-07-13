@@ -23,4 +23,6 @@ html(lang="en")
                     ul
                         for page in pages
                             li
-                                a(href="#{page._id}/edit")!= page._id
+                                a(href="#{page._id}")!= page._id
+                                | &nbsp; - &nbsp;
+                                a(href="#{page._id}/edit") Edit
