@@ -9,5 +9,7 @@ html(lang="en")
         .container-fluid
             for row in rows
                 .row
-                    for module in rows
-                    .cols.col-md-12(data-rv-each-modulemodel="row:", data-rv-html="modulemodel:output")
+                    .cols.col-md-12
+                        for module in row
+                            != module.output
+

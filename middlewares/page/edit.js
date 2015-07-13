@@ -24,7 +24,6 @@ module.exports = function(req, res, next) {
                     rows : []
                 };
 
-            console.log('doc is', JSON.stringify(doc,null,1));
             res.cache(require.resolve('./edit.jade'), {
                 title : name,
                 rows : doc.rows,

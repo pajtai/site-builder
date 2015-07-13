@@ -5,5 +5,6 @@
   ["POST",       "/admin/module/:name/save",        ["module/save"]],
   ["GET",        "/admin/module/:name/json",        ["module/get"]],
   ["GET",        "*/edit$",                         ["page/edit"]],
-  ["POST",       "*/save$",                         ["page/save"]]
+  ["POST",       "*/save$",                         ["page/save"]],
+  ["GET",        "*",                               ["page/render"]]
 ]

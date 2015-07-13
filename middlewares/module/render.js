@@ -5,7 +5,6 @@ var db = require('../../db'),
 
 module.exports = function(req, res, next) {
     var name = req.params.name;
-    console.log('looking for _id:', name);
 
     db.db.collection('modules').findOneAsync({
         _id : name

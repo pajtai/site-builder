@@ -7,9 +7,9 @@ module.exports = {
     start : start
 };
 
-function start() {
+function start(dbName) {
     return db
-        .promise
+        .promise(dbName)
         .then(function() {
             return expressively
                 .start({
