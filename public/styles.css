@@ -4,3 +4,9 @@
 #output {
     background-color: white;
 }
+.boxy-g {
+    border: solid 1px green;
+}
+.boxy-dg {
+    border: solid 1px darkgreen;
+}

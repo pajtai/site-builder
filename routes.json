@@ -1,5 +1,6 @@
 [
   ["POST",       "/admin/module/:name/save",        ["module/save"]],
+  ["POST",       "/admin/module/calculate",         ["module/calculate"]],
   ["GET",        "/admin",                          ["admin"]],
   ["GET",        "/admin/module/:name",             ["module/render"]],
   ["GET",        "/admin/module/:name/json",        ["module/get"]],

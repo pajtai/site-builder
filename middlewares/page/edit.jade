@@ -28,10 +28,23 @@ html(lang="en")
                                 .cols.col-md-11.btn-group(role="group", aria-label="row")
                                     button.btn.btn-default >
                                     button.btn.btn-primary(data-rv-on-click="view.onAddModule", data-rv-hide="row.picking") + Module
-                                    button.btn.btn-default(type="button", data-rv-each-modulemodel="row:") {{ modulemodel:_id }}
+                                    button.btn.btn-default(type="button", data-rv-each-modulemodel="row:", data-rv-on-click="row.editModule") {{ modulemodel:_id }}
                                 .cols.col-md-12.well(data-rv-show="row.picking")
                                     select.form-control.dropdown(data-rv-value="model:selectedModule")
                                         option(data-rv-each-module="row.modules", data-rv-value="module._id", data-rv-text="module._id")
+                                .boxy-g.cols.col-md-12(data-rv-show="row.editing")
+                                    .row
+                                        form
+                                            .form-group
+                                                .cols.col-md-12
+                                                    button.save.btn.btn-primary(type="button", data-rv-on-click="row.onSave") Save Module
+                                            .form-group
+                                                .cols.col-md-6
+                                                    h3 Data:
+                                                        textarea.editorData.small(data-rv-value="row.modulemodel:data")
+                                                .cols.col-md-6
+                                                    h3 Template:
+                                                        textarea.editor.small(data-rv-value="row.modulemodel:template")
 
 
             script(type="text/javascript").
